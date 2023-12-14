@@ -15,4 +15,14 @@ if [ $USERID -ne 0 ]; then
     exit 1
 fi
 
+AVAILABLE(){
+    if [ $1 -ne 0 ]; then
+        echo -e "$2 .... $R FAILED $N "
+    else
+        echo -e "$2 .... $G SUCCESS $N "
+    fi
+}
 
+cp mongo.repo /etc/yum.repos.d/mongo.repo
+
+AVAILABLE $? "Mongo repo copied" 
