@@ -52,7 +52,7 @@ cd /app  &>> $LOG
 
 VALIDATE $? "Navigating to app directory"
 
-unzip -o /tmp/catalogue.zip
+unzip -o /tmp/catalogue.zip &>> $LOG
 
 VALIDATE $? "Unzipping Catalogue file "
 
