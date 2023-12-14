@@ -30,7 +30,8 @@ dnf install nodejs -y &>> $LOG
 
 VALIDATE $? "Installing nodejs"
 
-id roboshop
+id roboshop &>> $LOG
+
 if [ $? -ne 0 ]; then
     useradd roboshop &>> $LOG
     VALIDATE $? "Creating the roboshop user "
