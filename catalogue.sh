@@ -46,11 +46,15 @@ cd /app  &>> $LOG
 
 VALIDATE $? "Navigating to app directory"
 
+unzip /tmp/catalogue.zip
+
+VALIDATE $? "Unzipping Catalogue file "
+
 npm install &>> $LOG
 
 VALIDATE $? "Installing Dependencies"
 
-cp -r catalogue.service /etc/systemd/system/catalogue.service &>> $LOG
+cp -r /home/centos/roboshop_shellscripts/catalogue.service /etc/systemd/system/catalogue.service &>> $LOG
 
 VALIDATE $? " Copying catalogue services"
 
