@@ -27,23 +27,23 @@ cp -r mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOG
 
 AVAILABLE $? "Mongo repo copied" 
 
-dnf install mongodb-org -y 
+dnf install mongodb-org -y &>> $LOG
 
 AVAILABLE $? "Mongodb Installation"
 
-systemctl enable mongod
+systemctl enable mongod &>> $LOG
 
 AVAILABLE $? "Enabling Mongodb"
 
-systemctl start mongod
+systemctl start mongod &>> $LOG
 
 AVAILABLE $? "Starting  Mongodb"
 
-sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
+sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf &>> $LOG
 
 AVAILABLE $? "Appling the changes "
 
-systemctl restart mongod 
+systemctl restart mongod  &>> $LOG
 
 AVAILABLE $? "Restarting Mongodb "
 
