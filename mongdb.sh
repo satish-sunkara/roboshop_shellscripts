@@ -23,6 +23,28 @@ AVAILABLE(){
     fi
 }
 
-cp mongo.repo /etc/yum.repos.d/mongo.repo
+cp -r mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOG
 
 AVAILABLE $? "Mongo repo copied" 
+
+dnf install mongodb-org -y 
+
+AVAILABLE $? "Mongodb Installation"
+
+systemctl enable mongod
+
+AVAILABLE $? "Enabling Mongodb"
+
+systemctl start mongod
+
+AVAILABLE $? "Starting  Mongodb"
+
+sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
+
+AVAILABLE $? "Appling the changes "
+
+systemctl restart mongod 
+
+AVAILABLE $? "Restarting Mongodb "
+
+
