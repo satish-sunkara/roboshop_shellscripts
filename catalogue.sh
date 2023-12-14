@@ -40,7 +40,7 @@ fi
 
 VALIDATE $? "Creating the User "
 
-mkdir -P /app &>> $LOG
+mkdir -p /app &>> $LOG
 
 VALIDATE $? "Creating app directory "
 
