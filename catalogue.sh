@@ -85,6 +85,6 @@ dnf install mongodb-org-shell -y &>> $LOG
 
 VALIDATE $? "Installing mongo third-party shell"
 
-mongo --host 172.31.40.237 </app/schema/catalogue.js &>> $LOG
+mongo --host mongodb.saachi.online </app/schema/catalogue.js &>> $LOG
 
-VALIDATE $? "Dupping catalogue data to mongodb"
+VALIDATE $? "Loading Schema to mongodb"
