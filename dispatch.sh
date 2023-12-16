@@ -31,6 +31,13 @@ VALIDATE $? "Installing golang"
 
 useradd roboshop &>> $LOG
 
+if [ $? -ne 0 ]; then
+    useradd roboshop &>> $LOG
+    VALIDATE $? "Creating the roboshop user "
+else
+    echo "User is already created ..... SKIPPING"
+fi
+
 VALIDATE $? "Creating roboshop user"
 
 mkdir /app  &>> $LOG
