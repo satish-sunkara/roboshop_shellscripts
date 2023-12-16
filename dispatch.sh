@@ -29,7 +29,7 @@ dnf install golang -y &>> $LOG
 
 VALIDATE $? "Installing golang"
 
-useradd roboshop &>> $LOG
+id roboshop &>> $LOG
 
 if [ $? -ne 0 ]; then
     useradd roboshop &>> $LOG
