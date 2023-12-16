@@ -23,7 +23,7 @@ AVAILABLE(){
     fi
 }
 
-cp -r mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOG
+cp -r /home/centos/roboshop_shellscripts/mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOG
 
 AVAILABLE $? "Mongo repo copied" 
 
