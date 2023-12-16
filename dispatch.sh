@@ -47,6 +47,10 @@ go build &>> $LOG
 
 VALIDATE $? "download the dependencies & building the software"
 
+cp /home/centos/roboshop_shellscripts/dispatch.service  /etc/systemd/system/dispatch.service
+
+VALIDATE $? "Validate and Configure dispatch.service"
+
 systemctl daemon-reload &>> $LOG
 
 VALIDATE $? "System daemon reload"
