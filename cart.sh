@@ -43,7 +43,7 @@ if [ $? -ne 0 ]; then
     usradd roboshop &>> $LOG
     VALIDATE $? "Creating the roboshop user "
 else
-    echo " User roboshop is already available $Y SKYPPING $N"
+    echo " User roboshop is already available $Y SKYPPING $N" &>> $LOG
 fi
 
 mkdir -p  /app &>> $LOG
