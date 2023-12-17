@@ -48,8 +48,3 @@ VALIDATE $? "Enabling mysql services"
 mysql_secure_installation --set-root-pass RoboShop@1 &>> $LOG
 
 VALIDATE $? "Configuring mysql with root user and password"
-
-mysql -uroot -pRoboShop@1 &>> $LOG
-exit
-
-VALIDATE $? "Login to the mysql "
