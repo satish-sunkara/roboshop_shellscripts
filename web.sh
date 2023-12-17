@@ -23,7 +23,7 @@ if [ $USERID -ne 0 ]; then
     echo -e " $R Please login as root user $N"
     exit 1
 else
-    VALIDATE $? "Loggin as a root"
+    VALIDATE $USERID "Loggin as a root"
 fi
 
 dnf install nginx -y &>> $LOG
