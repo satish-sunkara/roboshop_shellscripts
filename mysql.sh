@@ -31,7 +31,7 @@ VALIDATE $? "Disable MySQL 8 version"
 
 cp -r /home/centos/roboshop_shellscripts/mysql.repo /etc/yum.repos.d/mysql.repo &>> $LOG
 
-VALIDATE $? "Configuring mongo repo"
+VALIDATE $? "Configuring mysql repo"
 
 dnf install mysql-community-server -y &>> $LOG
 
