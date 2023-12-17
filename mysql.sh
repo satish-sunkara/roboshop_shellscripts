@@ -29,7 +29,7 @@ dnf module disable mysql -y &>> $LOG
 
 VALIDATE $? "Disable MySQL 8 version"
 
-cp -r /home/centos/roboshop_shellscripts/mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOG
+cp -r /home/centos/roboshop_shellscripts/mysql.repo /etc/yum.repos.d/mysql.repo &>> $LOG
 
 VALIDATE $? "Configuring mongo repo"
 
