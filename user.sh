@@ -49,7 +49,7 @@ else
 
 VALIDATE $? "Creating a User"
 
- mkdir -p /app   &>> $LOG
+mkdir -p /app   &>> $LOG
 curl -L -o /tmp/user.zip https://roboshop-builds.s3.amazonaws.com/user.zip  &>> $LOG
 
 VALIDATE $? "Creating app directory and Downloading User Code"
