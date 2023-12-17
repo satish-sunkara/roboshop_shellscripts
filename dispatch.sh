@@ -35,7 +35,7 @@ if [ $? -ne 0 ]; then
     useradd roboshop &>> $LOG
     VALIDATE $? "Creating the roboshop user "
 else
-    echo "User is already created ..... $Y SKIPPING $N"
+    echo -e "User is already created ..... $Y SKIPPING $N"
 fi
 
 VALIDATE $? "Creating roboshop user"
