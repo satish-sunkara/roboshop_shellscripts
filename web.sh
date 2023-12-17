@@ -44,11 +44,15 @@ VALIDATE $? "Removing exixsting html code"
 
 curl -o /tmp/web.zip https://roboshop-builds.s3.amazonaws.com/web.zip &>> $LOG
 
-VALIDATE $? "Installing nginx"
+VALIDATE $? "Downloading web zip code"
 
 cd /usr/share/nginx/html &>> $LOG
 
 VALIDATE $? "Changing Directory to the existing html code"
+
+unzip -o /tmp/web.zip
+
+VALIDATE $? "Unzipping the web code"
 
 cp -r /home/centos/roboshop_shellscripts/roboshop.conf /etc/nginx/default.d/roboshop.conf  &>> $LOG
 
