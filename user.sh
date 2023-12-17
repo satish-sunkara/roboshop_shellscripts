@@ -46,6 +46,7 @@ if [ $? -ne 0 ]; then
     VALIDATE $? "Creatring roboshop User"
 else
     echo "User roboshop is already exists $Y SKIPPING $N"
+fi
 
 VALIDATE $? "Creating a User"
 
