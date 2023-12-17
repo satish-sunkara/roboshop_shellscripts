@@ -40,10 +40,10 @@ fi
 
 VALIDATE $? "Creating roboshop user"
 
-mkdir /app  &>> $LOG
+mkdir -p /app  &>> $LOG
 curl -L -o /tmp/dispatch.zip https://roboshop-builds.s3.amazonaws.com/dispatch.zip &>> $LOG
 cd /app &>> $LOG
-unzip /tmp/dispatch.zip &>> $LOG
+unzip -o /tmp/dispatch.zip &>> $LOG
 
 VALIDATE $? "Creating app directory and downloading,unzipping diapatch code"
 
@@ -54,7 +54,7 @@ go build &>> $LOG
 
 VALIDATE $? "download the dependencies & building the software"
 
-cp /home/centos/roboshop_shellscripts/dispatch.service  /etc/systemd/system/dispatch.service
+cp -r /home/centos/roboshop_shellscripts/dispatch.service  /etc/systemd/system/dispatch.service
 
 VALIDATE $? "Validate and Configure dispatch.service"
 

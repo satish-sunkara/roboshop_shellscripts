@@ -44,6 +44,7 @@ if [ $? -ne 0 ]; then
     VALIDATE $? "Creating the roboshop user "
 else
     echo " User roboshop is already available $Y SKYPPING $N"
+fi
 
 mkdir -p  /app &>> $LOG
 
