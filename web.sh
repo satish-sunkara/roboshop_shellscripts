@@ -50,7 +50,7 @@ cd /usr/share/nginx/html &>> $LOG
 
 VALIDATE $? "Changing Directory to the existing html code"
 
-unzip -o /tmp/web.zip
+unzip -o /tmp/web.zip &>> $LOG
 
 VALIDATE $? "Unzipping the web code"
 

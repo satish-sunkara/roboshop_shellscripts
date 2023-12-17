@@ -22,7 +22,7 @@ if [ $USERID -ne 0 ]; then
     echo "$R Please login as a root user $N"
     exit 1
 else
-    VALIDATE $? "Logging as a root"
+    VALIDATE $USERID "Logging as a root"
 fi
 
 
