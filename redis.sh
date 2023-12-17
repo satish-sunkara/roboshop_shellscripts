@@ -39,7 +39,7 @@ dnf install redis -y &>> $LOG
 
 VALIDATE $? "Installing redis"
 
-sed -i 's/127.0.0.1/0.0.0.0/g' /etc/redis.conf &>> $LOG
+sed -i 's/127.0.0.1/0.0.0.0/g' /etc/redis/redis.conf &>> $LOG
 
 VALIDATE $? "Providing access permissions"
 
