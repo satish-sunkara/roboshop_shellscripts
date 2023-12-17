@@ -22,18 +22,25 @@ if [ $USERID -ne 0 ]; then
     echo -e " $R Please log in as root user $N"
     exit 1
 else
-    VALIDATE $USERID "logning as root "
+    VALIDATE $USERID "Logging as root "
 fi
 
 dnf install python36 gcc python3-devel -y &>> $LOG
 
 VALIDATE $?  "Install Python 3.6"
 
-useradd roboshop &>> $LOG
+id roboshop &>> $LOG
+
+if [ $? -ne 0 ]; then
+    useradd roboshop &>> $LOG
+    VALIDATE $? "Creating roboshop user"
+else
+    echo "User roboshop is already available $Y SKIPPING $N"
+fi
 
 VALIDATE $? "Creating a user"
 
-mkdir /app  &>> $LOG
+mkdir -p /app  &>> $LOG
 
 curl -L -o /tmp/payment.zip https://roboshop-builds.s3.amazonaws.com/payment.zip &>> $LOG
 
@@ -41,7 +48,7 @@ VALIDATE $? "Creating app directory and downloading payment code" &>> $LOG
 
 cd /app 
 
-unzip /tmp/payment.zip &>> $LOG
+unzip -o /tmp/payment.zip &>> $LOG
 
 pip3.6 install -r requirements.txt &>> $LOG
 

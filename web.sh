@@ -26,34 +26,34 @@ else
     VALIDATE $? "Loggin as a root"
 fi
 
-dnf install nginx -y
+dnf install nginx -y &>> $LOG
 
 VALIDATE $? "Installing nginx"
 
-systemctl enable nginx
+systemctl enable nginx &>> $LOG
 
 VALIDATE $? "Enabling nginx service"
 
-systemctl start nginx
+systemctl start nginx &>> $LOG
 
 VALIDATE $? "starting nginx service"
 
-rm -rf /usr/share/nginx/html/*
+rm -rf /usr/share/nginx/html/* &>> $LOG
 
 VALIDATE $? "Removing exixsting html code"
 
-curl -o /tmp/web.zip https://roboshop-builds.s3.amazonaws.com/web.zip
+curl -o /tmp/web.zip https://roboshop-builds.s3.amazonaws.com/web.zip &>> $LOG
 
 VALIDATE $? "Installing nginx"
 
-cd /usr/share/nginx/html
+cd /usr/share/nginx/html &>> $LOG
 
 VALIDATE $? "Changing Directory to the existing html code"
 
-cp -r /home/centos/roboshop_shellscripts/roboshop.conf /etc/nginx/default.d/roboshop.conf 
+cp -r /home/centos/roboshop_shellscripts/roboshop.conf /etc/nginx/default.d/roboshop.conf  &>> $LOG
 
 VALIDATE $? "Copying the roboshop config file to the defaultd folder"
 
-systemctl restart nginx 
+systemctl restart nginx  &>> $LOG
 
 VALIDATE $? "Restarting  nginx"

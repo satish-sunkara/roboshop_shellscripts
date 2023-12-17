@@ -39,17 +39,23 @@ dnf install nodejs -y   &>> $LOG
 
 VALIDATE $? "Installing nodejs version"
 
-useradd roboshop    &>> $LOG
+id roboshop    &>> $LOG
+
+if [ $? -ne 0 ]; then
+    useradd roboshop &>> $LOG
+    VALIDATE $? "Creatring roboshop User"
+else
+    echo "User roboshop is already exists $Y SKIPPING $N"
 
 VALIDATE $? "Creating a User"
 
-mkdir /app   &>> $LOG
+ mkdir -p /app   &>> $LOG
 curl -L -o /tmp/user.zip https://roboshop-builds.s3.amazonaws.com/user.zip  &>> $LOG
 
 VALIDATE $? "Creating app directory and Downloading User Code"
 
 cd /app &>> $LOG
-unzip /tmp/user.zip &>> $LOG
+unzip -o /tmp/user.zip &>> $LOG
 npm install &>> $LOG
 
 VALIDATE $? "Unzipping and installing usr code under app directory"

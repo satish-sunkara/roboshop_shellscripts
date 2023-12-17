@@ -29,11 +29,18 @@ dnf install maven -y &>> $LOG
 
 VALIDATE $? "java installation"
 
-useradd roboshop &>> $LOG
+id roboshop &>> $LOG
+
+if [ $? -ne 0 ]; then
+    useradd roboshop &>> $LOG
+    VALIDATE $? "Creating a roboshop user"
+else
+    echo "User roboshop is already exists $Y SKIPPING $N"
+fi
 
 VALIDATE $? "Creating a roboshop user"
 
-mkdir /app &>> $LOG
+mkdir -p /app &>> $LOG
 
 curl -L -o /tmp/shipping.zip https://roboshop-builds.s3.amazonaws.com/shipping.zip &>> $LOG
 
@@ -41,7 +48,7 @@ VALIDATE $? "Creating a app directory and downloading shipping.zip code file"
 
 cd /app &>> $LOG
 
-unzip /tmp/shipping.zip &>> $LOG
+unzip -o /tmp/shipping.zip &>> $LOG
 
 mvn clean package &>> $LOG
 

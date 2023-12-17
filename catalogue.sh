@@ -4,19 +4,22 @@ USERID=$(id -u)
 DATE=$(date +%F_%H-%M-%S)
 LOG="/tmp/$0-$DATE.log"
 
-if [ $USERID -ne 0 ]; then
-    echo " Please login as root user"
-    exit 1
-fi
-
 VALIDATE(){
     if [ $1 -ne 0 ]; then
-        echo " $2 ..... FAILED"
+        echo -e " $2 ........ $R FAILED $N"
         exit 1
     else
-        echo " $2 ..... SUCCESS"
+        echo -e " $2 ....... $G SUCCESS $N"
     fi
 }
+
+if [ $USERID -ne 0 ]; then
+    echo -e " $R Please log in as root user $N"
+    exit 1
+else
+    VALIDATE $USERID "logning as root "
+fi
+
 
 dnf module disable nodejs -y &>> $LOG
 
@@ -36,7 +39,7 @@ if [ $? -ne 0 ]; then
     useradd roboshop &>> $LOG
     VALIDATE $? "Creating the roboshop user "
 else
-    echo "User is already created ..... SKIPPING"
+    echo "User is already created ..... $Y SKIPPING $N"
 fi
 
 VALIDATE $? "Creating the User "

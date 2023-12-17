@@ -9,20 +9,21 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
-if [ $USERID -ne 0 ]; then
-    echo -e " $R You should login as root to execute script $N"
-    exit 1
-else
-    echo "You are loggeda as root"
-fi
-
 VALIDATE(){
     if [ $1 -ne 0 ]; then
-        echo " $2 ....... $R FAILED $N "
+        echo -e " $2 ........ $R FAILED $N"
         exit 1
-    echo 
-        echo " $2 ....... $G SUCCESS $N"
+    else
+        echo -e " $2 ....... $G SUCCESS $N"
+    fi
 }
+
+if [ $USERID -ne 0 ]; then
+    echo -e " $R Please log in as root user $N"
+    exit 1
+else
+    VALIDATE $USERID "logning as root "
+fi
 
 dnf module disable nodejs -y &>> $LOG
 
@@ -36,11 +37,15 @@ dnf install nodejs -y &>> $LOG
 
 VALIDATE $? "Install nodejs module:18"
 
-useradd roboshop &>> $LOG
+id roboshop &>> $LOG
 
-VALIDATE $? "Creating roboshop user"
+if [ $? -ne 0 ]; then
+    usradd roboshop &>> $LOG
+    VALIDATE $? "Creating the roboshop user "
+else
+    echo " User roboshop is already available $Y SKYPPING $N"
 
-mkdir /app &>> $LOG
+mkdir -p  /app &>> $LOG
 
 VALIDATE $? "Creating app directory"
 
@@ -50,7 +55,7 @@ VALIDATE $? "Download the application code"
 
 cd /app  &>> $LOG
 
-unzip /tmp/cart.zip &>> $LOG
+unzip -o /tmp/cart.zip &>> $LOG
 
 VALIDATE $? "Unzipping cart code file"
 
@@ -58,7 +63,7 @@ npm install  &>> $LOG
 
 VALIDATE $? "Installing dependencies"
 
-cp /home/centos/roboshop_shellscripts/cart.service /etc/systemd/system/cart.service &>> $LOG
+cp -r /home/centos/roboshop_shellscripts/cart.service /etc/systemd/system/cart.service &>> $LOG
 
 VALIDATE $? "Coping cart service file to systemd"
 

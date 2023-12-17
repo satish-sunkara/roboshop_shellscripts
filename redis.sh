@@ -9,13 +9,6 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
-if [ $USERID -ne 0 ]; then
-    echo "$R Please login as a root user $N"
-    exit 1
-else
-    echo "You are now root user"
-fi
-
 VALIDATE(){
     if [ $1 -ne 0 ]; then
         echo " $2 ...... $R FAILED $N"
@@ -24,6 +17,15 @@ VALIDATE(){
         echo " $2 ...... $G SUCCESS $N"
     fi
 }
+
+if [ $USERID -ne 0 ]; then
+    echo "$R Please login as a root user $N"
+    exit 1
+else
+    VALIDATE $? "Logging as a root"
+fi
+
+
 
 dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y &>> $LOG
 

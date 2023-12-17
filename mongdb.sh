@@ -10,11 +10,6 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
-if [ $USERID -ne 0 ]; then
-    echo -e "$Y Please login as root user $N"
-    exit 1
-fi
-
 AVAILABLE(){
     if [ $1 -ne 0 ]; then
         echo -e "$2 .... $R FAILED $N "
@@ -22,6 +17,14 @@ AVAILABLE(){
         echo -e "$2 .... $G SUCCESS $N "
     fi
 }
+
+if [ $USERID -ne 0 ]; then
+    echo -e "$Y Please login as root user $N"
+    exit 1
+else
+    VALIDATE $? "Logging as a root"
+fi
+
 
 cp -r /home/centos/roboshop_shellscripts/mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOG
 

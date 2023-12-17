@@ -22,7 +22,7 @@ if [ $USERID -ne 0 ]; then
     echo -e " $R Please log in as root user $N"
     exit 1
 else
-    VALIDATE $USERID "logning as root "
+    VALIDATE $USERID "Logging as root "
 fi
 
 dnf module disable mysql -y &>> $LOG
