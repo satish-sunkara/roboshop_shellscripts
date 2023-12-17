@@ -40,7 +40,7 @@ VALIDATE $? "Install nodejs module:18"
 id roboshop &>> $LOG
 
 if [ $? -ne 0 ]; then
-    usradd roboshop &>> $LOG
+    useradd roboshop &>> $LOG
     VALIDATE $? "Creating the roboshop user "
 else
     echo " User roboshop is already available $Y SKYPPING $N" &>> $LOG
