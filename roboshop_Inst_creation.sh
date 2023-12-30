@@ -1,7 +1,7 @@
 #!/bin/bash
 
-AMI_ID="ami-03265a0778a880afb"
-SG_ID="sg-06069d2b0bdaf0215"
+AMI_ID=ami-03265a0778a880afb
+SG_ID=sg-06069d2b0bdaf0215
 HOST_ZONEID=Z08239781GWZF21X2KM8L
 DOMAIN=saachi.online
 INSTANCE_LIST=("mongodb" "redis" "mysql" "rabbitmq" "catalogue" "cart" "user" "shipping" "paymenat" "dispatch" "web")
