@@ -4,7 +4,7 @@ AMI_ID="ami-03265a0778a880afb"
 SG_ID="sg-06069d2b0bdaf0215"
 HOST_ZONEID=Z08239781GWZF21X2KM8L
 DOMAIN=saachi.online
-INSTANCE_LIST=("mongodb" "redis" "mysql" "rabbitmq" "catalogue" "cart" "user" "shipping" "paymenat" "dispatch" "web")
+INSTANCE_LIST=("mongodb" "redis" "mysql" "rabbitmq" "catalogue" "cart" "user" "shipping" "payment" "dispatch" "web")
 
 for i in "${INSTANCE_LIST[@]}"; do
     echo "Instance is : $i"
